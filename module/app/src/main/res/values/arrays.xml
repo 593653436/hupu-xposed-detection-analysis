@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- LSPosed 作用域：只对虎扑生效，绝不影响其他应用 -->
+    <string-array name="xposedscope" translatable="false">
+        <item>com.hupu.games</item>
+    </string-array>
+</resources>

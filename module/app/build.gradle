@@ -1,0 +1,70 @@
+// HupuShield �?LSPosed module that hides the Xposed framework from 虎扑 (com.hupu.games).
+plugins {
+    id 'com.android.application'
+}
+
+android {
+    namespace 'com.dsh.hupushield'
+    compileSdk 34
+    ndkVersion '26.3.11579264'
+
+    defaultConfig {
+        applicationId "com.dsh.hupushield"
+        minSdk 24
+        targetSdk 34
+        versionCode 29
+        versionName "5.0"
+
+        ndk {
+            // The device is arm64-v8a only; keeping one ABI makes the module tiny.
+            abiFilters 'arm64-v8a'
+        }
+
+        externalNativeBuild {
+            cmake {
+                arguments '-DANDROID_STL=none'
+            }
+        }
+    }
+
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+
+    packaging {
+        // MUST stay false: LSPosed builds its own LspModuleClassLoader for a module and only
+        // knows the in-APK native path (base.apk!/lib/arm64-v8a). Storing the libs
+        // uncompressed and page-aligned is what makes them loadable from there.
+        jniLibs {
+            useLegacyPackaging false
+        }
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_11
+        targetCompatibility JavaVersion.VERSION_11
+    }
+
+    buildTypes {
+        debug {
+            minifyEnabled false
+        }
+        release {
+            minifyEnabled false
+            signingConfig signingConfigs.debug
+        }
+    }
+
+    lint {
+        abortOnError false
+        checkReleaseBuilds false
+    }
+}
+
+dependencies {
+    // Provided at runtime by LSPosed; must NOT be packaged.
+    compileOnly files('libs/api-82.jar')
+}

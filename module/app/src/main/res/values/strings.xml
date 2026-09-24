@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">HupuShield</string>
+    <string name="module_description">屏蔽虎扑(com.hupu.games)的 Xposed 框架检测，阻止其弹窗并自杀退出</string>
+</resources>

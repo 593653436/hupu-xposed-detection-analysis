@@ -1,0 +1,55 @@
+# ---- 构建产物 ----
+build/
+.cxx/
+.gradle/
+.idea/
+*.iml
+local.properties
+captures/
+
+# ---- 大体积 / 版权内容（有意不入库）----
+*.apk
+*.apks
+*.xapk
+*.zip
+*.img
+*.tgz
+*.tar.gz
+*.dex
+*.odex
+*.vdex
+*.art
+*.so
+# 例外：随源码保留的第三方头文件/预编译库由显式规则决定，见下
+!module/app/src/main/jniLibs/**/*.so
+
+# ---- 反编译 / 解包产物 ----
+apk/
+new/
+old/
+hupudata/
+ghj/
+decoded/
+lsp/
+shots*/
+
+# ---- 日志与截图 ----
+*.log
+*.png
+*.jpg
+*.jpeg
+*.webp
+logcat-*.txt
+lc*.txt
+anr*.txt
+tombstone_*
+*.catch
+
+# ---- 本机 / 隐私 ----
+.gh-token
+*.token
+.env
+credentials*
+*.bak
+snap.db*
+mc.db*
